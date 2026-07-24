@@ -1,0 +1,129 @@
+body {/*La base della pagina*/
+    background-color: #000000;
+    color: #ffffff;
+    overflow-x: hidden;
+}
+
+main {
+    position: relative; /* Fa da punto di ancoraggio per l'H1 */
+}
+
+main #luce {
+    position: absolute;
+    left: 20px;
+    z-index: 50;
+    background: none;
+    border: none;
+    color: white;
+}
+
+#logo {
+    display: block;
+    text-align: center;
+    padding: 3px 5px;
+    background: linear-gradient(145deg, #222222, #111111); /* Effetto sfumato */
+    color: #ffffff !important;
+    text-decoration: none;
+    border-radius: 12px; /* Punte smussate */
+    box-shadow: 3px 3px 6px #000000, -1px -1px 3px #444444; /* Effetto 3D rilievo */
+    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.8); /* Ombra sul testo */
+    transition: all 0.2s ease;
+}
+
+#logo:active {
+    box-shadow: inset 2px 2px 5px #000000; /* Effetto bottone premuto */
+    transform: translateY(2px);
+}
+
+nav.col-md-1 {
+    position: relative;
+    width: 100%;
+    border-bottom: 3px solid #050505;
+    background-color: #050505 !important;
+}
+
+main h1 {
+    position: absolute; /* Si posiziona precisamente dentro il main */
+    top: 20px;
+    left: 20px;
+    z-index: 10; /* Numero intero per stare sopra le immagini */
+    color: #ffffff;
+    text-shadow: 2px 2px 4px #000000;
+}
+
+main.col-md-11 {
+    padding: 0 !important;
+    margin-left: 0;
+    min-height: 100vh;
+}
+
+@media (min-width: 768px) {
+    nav.col-md-1 {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 15%; /* Larghezza esatta di 2 colonne su 12 */
+        height: 100vh;
+        border-right: 3px solid #050505;
+        border-bottom: none;
+    }
+
+    main.col-md-11 {
+        margin-left: 15%; /* Sposta il contenuto per non farlo coprire */
+    }
+}
+
+main.col-md-11.tema-chiaro, nav.col-md-1.tema-chiaro{
+    background-color: #ffffff !important;
+    color: #050505 !important;
+    font-palette: dark;
+}
+.carousel,
+.carousel-inner,
+.carousel-item {
+    height: 100vh;
+}
+
+.carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* cover perdo il progetto Python */
+}
+
+.box_sotto {
+    max-width: 1500px;
+    margin: 20px auto;
+    padding: 0 15px;
+}
+
+/* Possiamo unire tutte e 3 i comandi per seguire la stessa linea.*/
+.intro_box, .sotto_intro_box, .sotto_intro_box2 {
+    background-color: #000000;
+    color: rgb(255 255 255);
+    text-align: center;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+}
+
+#logomsg{
+    height: 32px;
+    width: auto;
+    object-fit: contain;
+    vertical-align: middle;
+}
+/* Sfondo speciale con la GIF di MGS per il main */
+.mgs-gif-bg {
+    background: url("https://media1.tenor.com/m/mMqzcP5dQ1wAAAAd/metal-gear-solid-mgs.gif") no-repeat center center !important;
+    background-size: cover !important;
+    position: relative;
+}
+
+/* Overlay scuro sopra la GIF per non farti accecare e leggere i testi */
+.mgs-gif-bg::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.65);
+    z-index: 0;
+}

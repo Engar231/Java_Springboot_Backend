@@ -1,0 +1,219 @@
+/*Il CSS è un decoratore dove gli si dice dove spostare o decorare qualcosa
+Per usare una funzione dobbiamo fare .nome_classe e per usarla fare solamente, nel HTML class = "nome_classe"*/
+
+/* * è la funzione universale, colpisce tutte*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* Modificalo così */
+  font-family: "Sans Serif Collection", "Helvetica", "Arial", sans-serif;
+}
+
+#logo, #logo a {
+  text-align: center;
+  padding: 3px 5px;
+  background: linear-gradient(145deg, #222222, #111111); /* Effetto sfumato */
+  color: #ffffff !important;
+  text-decoration: none;
+  border-radius: 12px; /* Punte smussate */
+  box-shadow: 3px 3px 6px #000000, -1px -1px 3px #444444; /* Effetto 3D rilievo */
+  text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.8); /* Ombra sul testo */
+  transition: all 0.2s ease;
+}
+
+.box_sotto_form {
+  max-width: 1500px;
+  margin: 20px auto;
+  padding: 0 15px;
+}
+
+body { /*La base della pagina*/
+  background-color: rgb(0 0 0);
+  color: rgb(0 0 0);
+}
+
+#gestione
+{
+  text-align: center;
+  color: #ffffff !important; /* Rende il testo nero */
+  font-weight: bold !important; /* Rende il testo in grassetto */
+}
+h5 {
+  text-align: center;
+  color: #000000 !important; /* Rende il testo nero */
+  font-weight: bold !important; /* Rende il testo in grassetto */
+}
+/* Barra superiore dove c'è Home, contatti, chi siamo, etc etc*/
+.bordo_superiore {
+  background-color: rgb(0 0 0);
+}
+
+/* Sovrascrive lo stile di Bootstrap per tutti i link della navbar */
+.home_alto .nav-link {
+  color: rgb(243, 232, 3) !important; /* Mantiene il colore giallo originale */
+  font-weight: bold;
+  transition: color 0.2s ease;
+}
+
+/*Carosello immagini che ri gira.*/
+.img-fluid-carousel {
+  height: 450px;
+  object-fit: cover;
+}
+
+/* Scritta sotto l'immagine*/
+.box_sotto {
+  max-width: 700px;
+  margin: 0px auto 20px auto; /* Il margine negativo fa "salire" il primo box sopra l'immagine hero */
+  padding: 0 20px;
+}
+
+/*Il rettangolo bianco con la descrizione prima delle carte */
+.intro_box {
+  background-color: rgb(30 30 30 / 0.66);
+  padding: 50px;
+  border-radius: 4px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.intro_box h1 {
+  color: rgb(243 232 3 / 0.95);
+  margin-bottom: 15px;
+  font-size: 50px;
+  font-weight: bold;
+}
+
+.intro_box p {
+  line-height: 1.6;
+  color: rgb(243 232 3 / 0.85);
+}
+
+#ricerca, #formbtn, #ricerca_magica{
+  color: rgb(255 255 255);
+  background-color: #5e0202;
+}
+
+/* Titoli sezioni*/
+.sotto_intro_box {
+  background-color: rgb(30 30 30 / 0.66);
+  color: rgb(243 232 3 / 0.85);
+  padding: 10px;
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 26px;
+  border-radius: 4px;
+}
+
+/*Genera una griglia perfetta a 3 colonne */
+.griglia_immagini {
+  display: grid; /*disposizione a griglia dell'immagine*/
+  grid-template-columns: repeat(3, 1fr); /* 3 colonne uguali, se tolgo il repeat mi da una schermata lunga*/
+  gap: 20px; /* Spazio tra le card */
+}
+
+/* Stile delle singole schede di immagini */
+.immagini_griglia {
+  background-color: rgb(0 0 0 / 0.56);
+  border-radius: 4px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+
+.immagini_griglia_wrapper img {
+  width: 100%;
+  height: 100%;
+  background-color: rgb(5 5 5 / 0.68);
+  object-fit: cover; /* Taglia l'immagine in modo che si adatti senza distorcersi */
+}
+
+/* Etichetta nera sopra l'immagine (es. acchiappa achiappa) */
+.immagini_griglia_label {
+  position: absolute;
+  top: 5px;
+  right: 12px;
+  background-color: rgb(0 0 0 / 0.66);
+  border-radius: 5px; /* Punte smussate */
+  color: rgb(243 232 3 / 0.66);
+  padding: 1px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.immagini_griglia_sottotitoli {
+  font-size: 17px;
+  color: rgb(243 232 3 / 0.85);
+  line-height: 0.9;
+  flex-grow: 1; /* Spinge la sezione statistiche sempre in fondo alla card in modo da essere coerenti */
+}
+
+
+/* Icone dentro la barra / Social */
+.statistiche_icone {
+  width: 30px;  /* Imposta la larghezza dell'icona */
+  height: 30px; /* Imposta l'altezza dell'icona */
+  object-fit: contain;
+}
+
+.immagini_griglia span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: rgb(173 255 47 / 0.54); /* Numeri scuri */
+}
+
+@media (max-width: 576px) {
+  .multi-collapse {
+    display: none !important;
+  }
+}
+
+#mostra_altro {
+  color: rgb(255 255 255);
+  background-color: #5e0202;
+}
+
+.barra_fondo {
+  background-color: rgb(30 30 30 / 0.66);
+  color: #ffffff;
+  padding: 20px 0;
+}
+
+.barra_fondo_social {
+  gap: 15px;
+}
+
+.icone_social {
+  color: #fff;
+  text-decoration: none;
+  /* Qui puoi aggiungere background colorati per i singoli social se vuoi */
+}
+
+.barra_fondo_newsletter {
+  gap: 10px;
+}
+
+
+.barra_fondo_newsletter-form input {
+  padding: 8px;
+  border: none;
+  border-radius: 4px 0 0 4px;
+}
+
+.barra_fondo_newsletter-form button {
+  background-color: #5e0202;
+  color: #ffffff;
+  border: none;
+  padding: 8px 15px;
+  cursor: pointer;
+  border-radius: 0 4px 4px 0;
+}
+
+
+.barra_fondo_copyright strong {
+  color: #ffffff;
+}

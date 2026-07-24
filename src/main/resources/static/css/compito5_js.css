@@ -1,0 +1,447 @@
+/*Il CSS è un decoratore dove gli si dice dove spostare o decorare qualcosa
+Per usare una funzione dobbiamo fare .nome_classe e per usarla fare solamente, nel HTML class = "nome_classe"*/
+
+/* * è la funzione universale, colpisce tutte*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Sans Serif Collection", "Helvetica", "Arial", sans-serif;
+}
+body {/*La base della pagina*/
+    background-color: #000000;
+    color: #ffffff;
+    overflow-x: hidden;
+}
+
+
+/* Barra superiore dove c'è Home, contatti, chi siamo, etc etc*/
+.bordo_superiore {
+    background-color: #ffffff;
+    padding: 10px;
+}
+
+.home_alto {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.home_alto .nav-link {
+    color: #000000;
+    font-weight: bold;
+    margin-right: 15px;
+    transition: color 0.3s;
+}
+
+.home_alto .nav-link:hover {
+    color: rgb(74 4 4 / 0.95);
+}
+
+/*Carosello immagini che ri gira.*/
+.img-fluid-carousel {
+    height: 320px;
+    object-fit: cover;
+}
+
+.box_sotto {
+    max-width: 1500px;
+    margin: 20px auto;
+    padding: 0 15px;
+}
+
+/* Possiamo unire tutte e 3 i comandi per seguire la stessa linea.*/
+.intro_box, .sotto_intro_box, .sotto_intro_box2 {
+    background-color: #000000;
+    color: rgb(255 255 255);
+    text-align: center;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+}
+
+/* SEZIONE RICERCA AGGIUNTA*/
+.sezione_ricerca {
+    background-color: #000000;
+    border: 1px solid rgb(0 0 0 / 0.4);
+}
+
+.input_ricerca {
+    background-color: #ffffff;
+    color: rgb(0 0 0 / 0.37) ;
+    border: 1px solid rgb(0 0 0);
+}
+
+.input_ricerca::placeholder {
+    color: #000000;
+}
+
+.input_ricerca:focus {
+    border-color: #680101;
+    box-shadow: 0 0 0 0.25rem rgba(255, 0, 0, 0.25);
+}
+
+/* Bottone di ricerca centrale */
+.btn_cerca_centro {
+    background-color: #8a0606;
+    color: #ffffff ;
+    font-weight: bold;
+    border: none ;
+    transition: background-color 0.3s ease;
+}
+
+.btn_cerca_centro:hover {
+    background-color: #b30000 ;
+}
+
+/* GRIGLIA PRINCIPALE DELLE 6 CARDS*/
+.griglia_immagini {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 15px;
+}
+
+.immagini_griglia {
+    background-color: rgba(0, 0, 0, 0.56);
+    border-radius: 4px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.immagini_griglia_wrapper {
+    position: relative;
+    height: 350px;
+}
+
+.immagini_griglia_wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.immagini_griglia_label {
+    position: absolute;
+    top: 5px;
+    right: 0;
+    background-color: rgb(0 0 0);
+    color: #ffffff;
+    padding: 5px 10px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.immagini_griglia_sottotitoli {
+    padding: 10px;
+    font-size: 18px;
+    color: #ffffff;
+}
+
+/* GRIGLIA ACCESSORI*/
+.griglia_immagini_accessori {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.immagini_griglia_accessori {
+    display: block; /* Base per consentire il reset */
+}
+
+.immagini_griglia_accessori_wrapper {
+    position: relative;
+    height: 150px;
+}
+
+.immagini_griglia_accessori_wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* LABEL SCRITTA IN ALTO A DESTRA*/
+.immagini_griglia_accessori_label {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: rgb(255 255 255);
+    font-size: 12px;
+    padding: 5px 10px;
+    z-index: 10;
+}
+
+.immagini_griglia_accessori_sottotitoli {
+    padding: 5px;
+    font-size: 14px;
+    color: rgb(255 255 255);
+}
+
+/* GRIGLIA LOCATION*/
+.griglia_immagini_location {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.immagini_griglia_location {
+    display: block;
+}
+
+.immagini_griglia_location_wrapper {
+    height: 100px;
+}
+
+.immagini_griglia_location_wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.immagini_griglia_location_sottotitoli {
+    text-align: center;
+    padding: 5px;
+    font-size: 12px;
+    color: rgb(255 255 255);
+}
+
+/* TASTO MOSTRA ALTRO*/
+.div-mostra-altro {
+    display: none !important;
+}
+
+/* RESET TOTALE PER IMPEDIRE CHE MI SI BUGGHI STO PROGRAMMA PER LE STATISTICHE*/
+.griglia_immagini .immagini_griglia .immagini_griglia_statistiche {
+    display: none !important;
+}
+
+
+/* PARTE CAOTICA! RIMPICCIOLIREEE*/
+/* FASE 4 XS*/
+@media (max-width: 411px) {
+    .griglia_immagini {
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .griglia_immagini .immagini_griglia:nth-child(n+4) {
+        display: none !important;
+    }
+
+    /* Accessori: Diventano 1 e 1 in verticale (1 colonna sola), spariscono le restanti 4 */
+    .griglia_immagini_accessori {
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .griglia_immagini_accessori .immagini_griglia_accessori:nth-child(n+3) {
+        display: none !important;
+    }
+
+    .griglia_immagini_location {
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .griglia_immagini_location .immagini_griglia_location {
+        display: block !important;
+    }
+    .griglia_immagini_location .immagini_griglia_location:nth-child(n+3) {
+        display: none !important;
+    }
+    .div-mostra-altro {
+        display: none !important; /* Forza la sparizione totale su XS */
+    }
+}
+
+/* FASE 2 SMALL*/
+@media (min-width: 412px) and (max-width: 767px) {
+    .img-fluid-carousel {
+        height: 915px;
+    }
+
+    .griglia_immagini {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .griglia_immagini .immagini_griglia:nth-child(n+5) {
+        display: none !important;
+    }
+
+    /* Accessori: Diventano 2 in alto e 2 in basso (2 colonne), le altre spariscono */
+    .griglia_immagini_accessori {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .griglia_immagini_accessori .immagini_griglia_accessori {
+        display: block !important;
+    }
+    .griglia_immagini_accessori .immagini_griglia_accessori:nth-child(n+5) {
+        display: none !important;
+    }
+
+    .griglia_immagini_location {
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .griglia_immagini_location .immagini_griglia_location {
+        display: block !important;
+    }
+    .griglia_immagini_location .immagini_griglia_location:nth-child(n+3) {
+        display: none !important;
+    }
+    .griglia_immagini_location.mostra-tutto .immagini_griglia_location {
+        display: block !important;
+    }
+    /* Mostra il contenitore dei pulsanti */
+    .div-mostra-altro {
+        display: block !important;
+    }
+
+    .tasto-nascondi { display: none !important; }
+    .tasto-mostra { display: inline-block !important; }
+
+    .griglia_immagini_location .immagini_griglia_location:nth-child(n+3) {
+        display: none !important;
+    }
+
+    #toggle-location:checked ~ .griglia_immagini_location .immagini_griglia_location {
+        display: block !important;
+    }
+
+    #toggle-location:checked ~ .div-mostra-altro .tasto-mostra {
+        display: none !important;
+    }
+    #toggle-location:checked ~ .div-mostra-altro .tasto-nascondi {
+        display: inline-block !important;
+    }
+}
+
+/* FASE 2 MEDIUM*/
+@media (min-width: 768px) and (max-width: 1019px) {
+    .img-fluid-carousel {
+        height: 934px;
+    }
+
+    .griglia_immagini {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    .griglia_immagini .immagini_griglia {
+        display: flex !important;
+    }
+    .griglia_immagini .immagini_griglia:nth-child(n+5) {
+        display: none !important;
+    }
+
+    /* Accessori: Diventano esattamente 3 in un'unica riga, i restanti spariscono */
+    .griglia_immagini_accessori {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .griglia_immagini_accessori .immagini_griglia_accessori {
+        display: block !important;
+    }
+    .griglia_immagini_accessori .immagini_griglia_accessori:nth-child(n+4) {
+        display: none !important;
+    }
+
+    /* Location */
+    .griglia_immagini_location {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .griglia_immagini_location .immagini_griglia_location {
+        display: block !important;
+    }
+}
+
+/* FASE 1 L/XL*/
+@media (min-width: 1020px) {
+    .griglia_immagini {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .griglia_immagini .immagini_griglia {
+        display: flex !important;
+    }
+
+    /* Ripristino totale di tutti gli accessori per lo schermo PC */
+    .griglia_immagini_accessori {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    .griglia_immagini_accessori .immagini_griglia_accessori {
+        display: block !important;
+    }
+
+    /* Ripristino totale di tutte le location */
+    .griglia_immagini_location {
+        grid-template-columns: repeat(6, 1fr);
+    }
+    .griglia_immagini_location .immagini_griglia_location {
+        display: block !important;
+    }
+
+    /* ATTIVAZIONE DELLE STATISTICHE: ESCLUSIVAMENTE SU MONITOR GRANDE */
+    .griglia_immagini .immagini_griglia .immagini_griglia_statistiche {
+        display: flex !important;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 10px;
+        background-color: #000;
+        padding: 5px;
+        font-size: 12px;
+        color: rgb(255 255 255);
+        border-top: 1px solid #222;
+    }
+}
+
+
+/* STATISTICHE E FONDO E COPYRIGHHJT */
+.statistiche_icone {
+    width: 24px;
+    height: 24px;
+    vertical-align: middle;
+}
+
+.barra_fondo {
+    background-color: rgba(166, 14, 14, 0.2);
+    color: #ffffff;
+    padding: 20px 0;
+}
+
+.barra_fondo_coloritipo {
+    width: 97%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    text-align: center;
+}
+
+.barra_fondo_newsletter-form {
+    display: flex;
+    margin-top: 5px;
+}
+
+.barra_fondo_newsletter-form input {
+    padding: 8px;
+    border: none;
+    border-radius: 4px 0 0 4px;
+}
+
+.barra_fondo_newsletter-form button {
+    background-color: #8a0606;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    cursor: pointer;
+    border-radius: 0 4px 4px 0;
+}
+
+.barra_fondo_newsletter-form .statistiche_icone {
+    width: 50px;
+    height: 50px;
+    margin: 0 10px;
+}
+
+/* Footer Orizzontale Responsive */
+@media (min-width: 768px) {
+    .barra_fondo_coloritipo {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-end;
+        text-align: left;
+    }
+    .barra_fondo_copyright {
+        text-align: right;
+    }
+}

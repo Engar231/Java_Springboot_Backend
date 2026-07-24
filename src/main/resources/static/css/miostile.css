@@ -1,0 +1,30 @@
+.disegna{
+border: 1px solid red;
+height: 200px;
+
+
+}
+.bg-body-tertiary {
+   
+    background-color: #97ff00!important;
+}
+
+.navbar-brand img{
+
+width: 10%;
+
+}
+
+h1{
+    color: red;
+}
+
+.titoli{
+    font-size: 20px;
+}
+
+.altera
+{
+    color: orange;
+    font-size: 40px;
+}
