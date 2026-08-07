@@ -1,33 +1,45 @@
 <!doctype html>
 <html lang="it" xmlns:th="https://www.thymeleaf.org">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Jurassic Park - System Error</title>
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.rtl.min.css" integrity="sha384-CfCrinSRH2IR6a4e6fy2q6ioOX7O6Mtm1L9vRvFZ1trBncWmMePhzvafv7oIcWiW" crossorigin="anonymous">
-	<title>Home page Spring </title>
-    
-  </head>
-  <body>
-  
-  <h3>Qualcosa è andato storto!</h3>
-  <p th:text="${msg}"> </p>
-  
-  
-  <a class="btn btn-primary" href="/"> HOME</a>
-  
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Optional JavaScript; choose one of the two! -->
+  <!-- CSS Custom Unificato -->
+  <link rel="stylesheet" th:href="@{/css/admin_css.css}">
+</head>
+<body class="d-flex align-items-center justify-content-center min-vh-100">
 
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+<div class="nedry-box text-center p-4" style="max-width: 550px;">
+  <!-- HEADER NEDRY -->
+  <div class="d-flex align-items-center justify-content-center gap-3 mb-3">
+    <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExOTJrZ3J6NmV3OGd0NmtpdTU3dGltNngwY3lvYWpmOG85NWxzbDhxcyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/QH9uCg7gS6EPm/giphy.gif"
+         alt="Nedry"
+         style="width: 70px; height: auto;">
+    <h3 class="text-danger fw-bold m-0" style="font-family: monospace;">
+      Ah ah ah! Non hai digitato la parolina magica!
+    </h3>
+  </div>
 
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <!--
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js" integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y" crossorigin="anonymous"></script>
-    -->
-  </body>
+  <p class="terminal-text text-start text-warning mb-2">> SYSTEM ACCESS DENIED / EXECUTION FAILED</p>
+
+  <!-- BOX DETTAGLIO ERRORE DINAMICO -->
+  <div class="text-start bg-black border border-danger p-3 mb-4 rounded" style="color: #ff8888; font-size: 0.9em; max-height: 150px; overflow-y: auto;">
+    <strong>ERROR LOG:</strong><br>
+    <span th:text="${msg != null ? msg : 'Errore imprevisto nel sistema. Controlla i dati o i permessi di accesso.'}">
+                Si è verificato un errore durante l'esecuzione del comando.
+            </span>
+  </div>
+
+  <!-- BOTTONI DI RITORNO -->
+  <div class="d-flex justify-content-center gap-3">
+    <a href="/" class="btn-jp-green">TORNA ALLA HOME</a>
+    <a href="javascript:history.back()" class="btn-jp-danger">INDIETRO</a>
+  </div>
+</div>
+
+</body>
 </html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Jurassic Park - Control Room</title>
+    <link rel="stylesheet" th:href="@{/css/admin_css.css}">
+</head>
+<body>
+
+<div class="header">
+    <div>
+        <h1>SYSTEM CONTROL ROOM</h1>
+        <p class="terminal-text">> Security Level: <span style="color: #ff3333; font-weight: bold;">ADMINISTRATOR</span></p>
+    </div>
+    <div class="status-badge">
+        SYSTEM STATUS: ONLINE
+    </div>
+</div>
+
+<div class="grid-container">
+
+    <!-- CARD 1: REGISTRAZIONE NUOVO DIPENDENTE -->
+    <div class="card">
+        <h3>[+] NUOVO PERSONALE</h3>
+        <p class="terminal-text">Inizializza la procedura per aggiungere un nuovo operatore o ricercatore al parco.</p>
+        <a th:href="@{/new}" class="btn">REGISTRA DIPENDENTE</a>
+    </div>
+
+    <!-- CARD 2: GESTIONE ELENCO DIPENDENTI -->
+    <div class="card">
+        <h3>[=] REGISTRO PERSONALE</h3>
+        <p class="terminal-text">Visualizza la lista completa dei dipendenti, modifica i ruoli o revoca le credenziali.</p>
+        <a th:href="@{/gestione}" class="btn">GESTISCI DIPENDENTI</a>
+    </div>
+
+    <!-- CARD 3: GESTIONE PROGETTI -->
+    <div class="card">
+        <h3>[+] PROGETTI</h3>
+        <p class="terminal-text">Visualizza e gestisci i progetti attivi sul parco..</p>
+        <a th:href="@{/progetti}" class="btn">GESTISCI PROGETTI</a>
+    </div>
+
+    <!-- CARD 5: PROTOCOLLI DI SICUREZZA -->
+    <div class="card danger">
+        <h3>[!] RECINTI DI CONTENIMENTO</h3>
+        <p class="terminal-text">Monitoraggio griglie elettrificate e stato dei dinosauri nei vari settori.</p>
+        <button class="btn btn-danger" onclick="verificaRecinti()">VERIFICA RECINTI</button>
+    </div>
+</div>
+
+<script th:src="@{/js/admin_js.js}"></script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Jurassic Park - Control Room</title>
+    <link rel="stylesheet" th:href="@{/css/admin_css.css}">
+</head>
+<body>
+
+<div class="header">
+    <div>
+        <h1>SYSTEM CONTROL ROOM</h1>
+        <p class="lead mb-1">
+            Hai effettuato l'accesso
+            <span th:text="${dipendente != null ? (dipendente.nome + ' ' + dipendente.cognome) : 'UTENTE'}">Nome Cognome</span>
+        </p>
+        <p class="terminal-text">> Security Level: <span style="color: #ff3333; font-weight: bold;">GUEST</span></p>
+    </div>
+    <div class="status-badge">
+        SYSTEM STATUS: ONLINE
+    </div>
+</div>
+
+<div class="grid-container">
+
+    <!-- CARD 1: REGISTRAZIONE NUOVO DIPENDENTE -->
+    <div class="card">
+        <h3>[+] MODIFICA DATI PERSONALI</h3>
+        <p class="terminal-text">Inizializza la procedura per modificare le proprie credenziali.</p>
+        <a th:href="@{/guest/edit}" class="btn">MODIFICA PROFILO</a>
+    </div>
+
+    <!-- CARD 2: GESTIONE ELENCO DIPENDENTI -->
+    <div class="card">
+        <h3>[=] REGISTRO PROGETTI</h3>
+        <p class="terminal-text">Visualizza la lista dei progetti attivi su questa utenza..</p>
+        <a th:href="@{/guest/progetti}" class="btn">
+            PROGETTI ATTIVI
+        </a>
+    </div>
+
+    <!-- CARD 3: PROTOCOLLI DI SICUREZZA -->
+    <div class="card danger">
+        <h3>[!] RECINTI DI CONTENIMENTO</h3>
+        <p class="terminal-text">Monitoraggio griglie elettrificate e stato dei dinosauri nei vari settori.</p>
+        <button class="btn btn-danger" onclick="verificaRecinti()">VERIFICA RECINTI</button>
+    </div>
+
+</div>
+
+<script th:src="@{/js/admin_js.js}"></script>
+</body>
+</html>

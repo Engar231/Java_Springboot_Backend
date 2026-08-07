@@ -6,8 +6,9 @@ import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Email;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-
+import lombok.ToString;
 
 @Entity
 @Table(name="users")
@@ -16,13 +17,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class User {
 
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
-	
-	/*l'email va inserita solo qui!*/
+
 	@NotBlank(message = "L'email è obbligatoria!")
 	@Pattern(
 			regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$",
@@ -52,11 +50,11 @@ public class User {
 	private String confermaPassword;
 
 	@OneToOne(fetch = FetchType.EAGER, mappedBy = "user")
+	@EqualsAndHashCode.Exclude
+	@ToString.Exclude
 	private Dipendente dipendente;
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="id_permesso", nullable = false)
 	private Permission permission;
-	
-	
 }

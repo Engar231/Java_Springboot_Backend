@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="it" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{/css/compito2.1_navbar.css}">
+    <title>Form Registrazione / Modifica Dipendente</title>
+</head>
+
+<header class="bordo_superiore">
+    <nav class="navbar navbar-expand-md home_alto">
+        <button class="navbar-brand btn p-0 border-0 me-3" type="button" data-bs-toggle="collapse" data-bs-target="#menuJurassic" aria-controls="menuJurassic" aria-expanded="false" aria-label="Toggle navigation">
+            <img th:src="@{/img/r1.png}" alt="Jurassic Park" style="height: 50px; width: auto;">
+        </button>
+
+        <div class="collapse navbar-collapse" id="menuJurassic">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item"><a class="nav-link text-light" th:href="@{/home}">Home</a></li>
+                <li class="nav-item"><a class="nav-link text-light" href="https://i.pinimg.com/736x/8d/17/bb/8d17bb6b6e259ae43a92580d447fdd97.jpg" target="_blank">I nostri dinosauri</a></li>
+                <li class="nav-item"><a class="nav-link text-light" href="https://it.wikipedia.org/wiki/Michael_Crichton" target="_blank">Michael Crichton</a></li>
+            </ul>
+        </div>
+    </nav>
+</header>
+<body>
+<main class="box_sotto_form d-flex justify-content-center">
+    <div class="p-4 rounded shadow-sm w-100" style="max-width: 1200px; background-color: #ffffff;">
+
+        <form th:action="@{/guest/edit}" th:object="${d}" method="post">
+            <!-- ID nascosto -->
+            <input type="hidden" th:field="*{id}" />
+            <input type="hidden" th:field="*{user.id}" />
+            
+            <div class="mb-3">
+                <label class="form-label">Nome</label>
+                <input type="text" th:field="*{nome}" class="form-control" required />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Cognome</label>
+                <input type="text" th:field="*{cognome}" class="form-control" required />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Email</label>
+                <input type="email" th:field="*{user.email}" class="form-control" required />
+            </div>
+
+            <button type="submit" class="btn btn-success">Salva Modifiche</button>
+        </form>
+    </div>
+</main>
+
+<footer class="barra_fondo">
+    <div class="row text-center">
+        <div class="col-12 col-lg-4 text-lg-start barra_fondo_social">
+            <a href="#" class="icone_social pe-2"><img th:src="@{/img/yt.png}" alt="Youtube" class="statistiche_icone"></a>
+            <a href="#" class="icone_social pe-2"><img th:src="@{/img/tiktok.png}" alt="tiktok" class="statistiche_icone"></a>
+            <a href="#" class="icone_social pe-2"><img th:src="@{/img/instagram.png}" alt="IG" class="statistiche_icone"></a>
+            <a href="#" class="icone_social pe-2"><img th:src="@{/img/twitter.png}" alt="Twitter" class="statistiche_icone"></a>
+            <a href="#" class="icone_social pe-2"><img th:src="@{/img/facebook.png}" alt="FB" class="statistiche_icone"></a>
+        </div>
+        <div class="col-12 col-lg-4 barra_fondo_newsletter">
+            <label for="email">Iscrizione alla newsletter:</label>
+            <div class="barra_fondo_newsletter-form">
+                <input type="email" id="email" class="small rounded-5" placeholder="Inserisci la tua email">
+                <button type="submit" class="small rounded-5">Iscriviti</button>
+            </div>
+        </div>
+        <div class="col-12 col-lg-4 text-lg-end barra_fondo_copyright">
+            <p>&copy; 03/07/2026 Jurassic Park </p>
+            <p><img th:src="@{/img/phone.png}" alt="Icona Supporto" class="statistiche_icone">+39 - 000 - 00 - 00 - 000 </p>
+            <p><strong>All Copyright deserve to Michael Crichton</strong></p>
+        </div>
+    </div>
+</footer>
+
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+<script src="js/compito2.1_navbar.js"></script>
+<script th:src="@{/js/ricerca.js}"></script>
+</body>
+</html>

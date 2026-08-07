@@ -1,22 +1,32 @@
 package com.example.demo.controller;
 
+import com.example.demo.entities.*;
+import com.example.demo.repositories.IProgettoRepository;
+import org.springframework.security.core.Authentication;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import com.example.demo.entities.Dipendente;
-import com.example.demo.entities.User;
 import com.example.demo.services.DipendenteService;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.security.Principal;
 
 
 @Controller
 public class PageController {
+	@Autowired
+	private com.example.demo.repository.IPermissionRepository permissionRepo;
+
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+
+	@Autowired
+	private IProgettoRepository progettoRepo;
 
 
 	private final DipendenteService dipService;
@@ -45,37 +55,29 @@ public class PageController {
 	public String crea(Model model)
 	{
 		Dipendente d = new Dipendente();
-		d.setUser(new User()); // Inizializziamo l'oggetto User interno
+		d.setUser(new User());
 		model.addAttribute("d", new Dipendente());
 		return "form";
 	}
 
 
 	@PostMapping("/new")
-	public String crea(@Valid @ModelAttribute("d") Dipendente d,
-	                   BindingResult result,
-	                   RedirectAttributes redirectAttributes) {
+	public String crea(@ModelAttribute("d") Dipendente dipendente) {
 
-		if (d.getUser() != null && dipService.usernameGiaPresente(d.getUser().getUsername())) {
-			result.rejectValue("user.username", "error.user", "Username già in uso!");
-		}
-		if (d.getUser() != null && dipService.emailGiaPresente(d.getUser().getEmail())) {
-			result.rejectValue("user.email", "error.user", "Email già registrata!");
-		}
-		if (d.getUser() != null && d.getUser().getPassword() != null
-				&& !d.getUser().getPassword().equals(d.getUser().getConfermaPassword())) {
-			result.rejectValue("user.confermaPassword", "error.user", "Le password inserite non coincidono!");
-		}
+		String rawPassword = dipendente.getUser().getPassword();
+		dipendente.getUser().setPassword(passwordEncoder.encode(rawPassword));
 
-		if (result.hasErrors()) {
-			return "form";
-		}
+		PermissionType tipoSelezionato = dipendente.getUser().getPermission().getType();
 
-		Dipendente salvato = dipService.inserimentoDipendente(d);
-		redirectAttributes.addFlashAttribute("msg", "Registrazione effettuata con successo: ");
-		redirectAttributes.addFlashAttribute("dNew", salvato != null ? salvato : d); // Passiamo dNew che serve a navbar.html!
+		Permission permissionEsistente = permissionRepo.findByType(tipoSelezionato)
+				.orElseThrow(() -> new RuntimeException("Permesso non trovato nel Database"));
 
-		return "redirect:/home";
+		dipendente.getUser().setPermission(permissionEsistente);
+
+
+		dipService.inserimentoDipendente(dipendente);
+
+		return "redirect:/login";
 	}
 
 	@GetMapping("/gestione")
@@ -119,6 +121,95 @@ public class PageController {
 			model.addAttribute("msg", "Modifica non Avvenuta! ");
 		}
 		return "home";
+	}
+	@GetMapping("/login")
+	public String login() {
+		return "login";
+	}
+
+	@GetMapping("/admin")
+	public String adminDashboard() {
+
+		return "admin_dashboard";
+	}
+
+
+
+	@GetMapping("/guest")
+	public String guestDashboard(Principal principal, Model model) {
+		String username = principal.getName();
+		Dipendente dipendenteLoggato = dipService.findByUsername(username);
+
+		model.addAttribute("dipendente", dipendenteLoggato);
+		return "guest_dashboard";
+	}
+
+
+	@GetMapping("/guest/edit")
+	public String editGuestProfile(Principal principal, Model model) {
+		String username = principal.getName();
+		Dipendente d = dipService.findByUsername(username);
+
+		model.addAttribute("d", d);
+		return "form_guest";
+	}
+
+
+	@PostMapping("/guest/edit")
+	public String updateGuestProfile(@ModelAttribute("d") Dipendente d) {
+		dipService.updateGuestData(d);
+		return "redirect:/guest";
+	}
+
+	@GetMapping("/default")
+	public String defaultAfterLogin(Authentication authentication) {
+		boolean isAdmin = authentication.getAuthorities().stream()
+				.anyMatch(a -> a.getAuthority().equals("ADMIN"));
+
+		if (isAdmin) {
+			return "redirect:/admin";
+		}
+		else {
+			return "redirect:/guest";
+		}
+	}
+
+	@GetMapping("/progetti")
+	public String mostraProgetti(Model model) {
+		model.addAttribute("progetti", progettoRepo.findAll());
+		return "gestione_progetti";
+	}
+
+	@GetMapping("/progetti/nuovo")
+	public String nuovoProgettoForm(Model model) {
+		model.addAttribute("progetto", new Progetto());
+		return "form_progetto";
+	}
+
+
+	@GetMapping("/progetti/modifica/{id}")
+	public String modificaProgettoForm(@PathVariable Long id, Model model) {
+		Progetto progetto = progettoRepo.findById(id)
+				.orElseThrow(() -> new IllegalArgumentException("ID Progetto non valido: " + id));
+		model.addAttribute("progetto", progetto);
+		return "form_progetto";
+	}
+
+
+	@PostMapping("/progetti/salva")
+	public String salvaProgetto(@ModelAttribute("progetto") Progetto progetto) {
+		progettoRepo.save(progetto);
+		return "redirect:/progetti";
+	}
+
+	@GetMapping("/guest/progetti")
+	public String mostraProgettiGuest(Model model, Principal principal) {
+		Dipendente dipendente = dipService.findByUsername(principal.getName());
+
+		model.addAttribute("dipendente", dipendente);
+		model.addAttribute("progetti", dipendente.getProgetti());
+
+		return "guest_progetti";
 	}
 }
 

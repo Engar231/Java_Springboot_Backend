@@ -19,8 +19,6 @@
     <div class="collapse navbar-collapse" id="menuJurassic">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item"><a class="nav-link text-light" th:href="@{/home}">Home</a></li>
-        <li class="nav-item"><a class="nav-link text-light" th:href="@{/new}">Registrati</a></li>
-        <li class="nav-item"><a class="nav-link text-light" th:href="@{/gestione}">Gestione</a></li>
         <li class="nav-item"><a class="nav-link text-light" href="https://i.pinimg.com/736x/8d/17/bb/8d17bb6b6e259ae43a92580d447fdd97.jpg" target="_blank">I nostri dinosauri</a></li>
         <li class="nav-item"><a class="nav-link text-light" href="https://it.wikipedia.org/wiki/Michael_Crichton" target="_blank">Michael Crichton</a></li>
       </ul>
@@ -158,6 +156,18 @@
                data-msg-ok="Password confermata!">
         <div class="valid-feedback"></div>
         <div class="invalid-feedback"></div>
+      </div>
+
+      <!-- RUOLO (ADMIN / GUEST) -->
+      <div class="col-md-12">
+        <label for="permission" class="form-label">Permesso Sistema (Ruolo)</label>
+        <select th:field="*{user.permission.type}" class="form-select" id="permission" required>
+          <option value="" disabled selected>Seleziona Ruolo...</option>
+          <option value="ADMIN">ADMIN (Accesso Completo)</option>
+          <option value="GUEST">GUEST (Accesso Limitato)</option>
+        </select>
+        <div class="valid-feedback"></div>
+        <div class="invalid-feedback">Seleziona un ruolo.</div>
       </div>
 
 
